@@ -1,1 +1,1 @@
-> Coding
+> Python Algorithm Coding
