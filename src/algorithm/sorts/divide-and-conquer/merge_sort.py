@@ -22,7 +22,6 @@ def merge(arrf, arrb):
         return arrb
     if len(arrb) < 1:
         return arrf
-    
     # 先頭要素を比較して小さい方を先頭に配置 
     if arrf[0] <= arrb[0]:
         # 前の配列の先頭要素 前の配列の先頭要素以下 後ろのほうの配列をマージ
