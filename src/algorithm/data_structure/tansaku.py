@@ -111,4 +111,4 @@ if __name__ == '__main__':
     # print(include_2(target, nums))
 
     pprint("binary_search")
-    print(binary_searh(target, nums))
+    print(binary_search(target, nums))

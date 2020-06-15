@@ -1,13 +1,16 @@
 class Node:
-    """クラスで表す場合"""
+    """二分探索木クラス"""
 
     def __init__(self, value):
         self.value = value
-        self.left = Node
-        self.right = Node
+        self.left = None
+        self.right = None
+
+    def __str__(self):
+        return str({'value': self.value, 'left': self.left, 'right': self.right})
 
 
-def hoge():
+class BinarySearchTree:
     """
     # 疑似コード
     データを挿入できるまで以下の処理を繰り返す
@@ -17,4 +20,33 @@ def hoge():
         挿入すべき範囲に節点がない場合
             挿入したいデータの値を持つ節点を新たに作って完了
     """
-    pass
+
+    def __init__(self, root):
+        self.root = Node(root)
+
+    def insert(self, key):
+        node = self.root
+        while True:  # 場所が決まるまで繰り返す
+            if node.value > key:
+                if node.left is None:
+                    node.left = Node(key)
+                    return
+                node = node.left  # 挿入の検討範囲を左にずらす
+            elif node.value <= key:
+                if node.right is None:
+                    node.right = Node(key)
+                    return
+                node = node.right  # 挿入の検討範囲を右にずらす
+
+    def __str__(self):
+        return str({'BinarySearchTree': self.root })
+
+
+if __name__ == '__main__':
+    print(f'{"#" * 25} Process Start {"#" * 25}')
+    t = BinarySearchTree(7)
+    t.insert(3)
+    t.insert(9)
+    t.insert(1)
+    t.insert(5)
+    print(t)
