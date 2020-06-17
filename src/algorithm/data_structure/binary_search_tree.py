@@ -38,6 +38,16 @@ class BinarySearchTree:
                     return
                 node = node.right  # 挿入の検討範囲を右にずらす
 
+    def inorder(self, node):
+        if node is None:
+            return
+        else:
+            # print(node.value)
+            self.inorder(node.left)
+            print(node.value)
+            self.inorder(node.right)
+            # print(node.value)
+
     def __str__(self):
         return str({'BinarySearchTree': self.root })
 
@@ -49,4 +59,4 @@ if __name__ == '__main__':
     t.insert(9)
     t.insert(1)
     t.insert(5)
-    print(t)
+    t.inorder(t.root)
