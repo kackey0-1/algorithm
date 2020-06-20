@@ -4,8 +4,8 @@
 """
 f = open('data/test.txt', 'w')
 f.write("Test\n")
-print("I am print", file=f)
-print("I", "am", "hogehoge", sep='#', end='!', file=f)
+# print("I am print", file=f)
+# print("I", "am", "hogehoge", sep='#', end='!', file=f)
 f.close()
 s = """\
 AAA
@@ -49,4 +49,13 @@ with open('data/test.txt', 'r+') as f:
     # w+をした場合、f.write()の時点でファイルの中身が消える
     f.write(s)
     f.seek(0)
-    print(f.read())
+    # print(f.read())
+
+"""
+Template 利用
+"""
+import string
+with open('data/template.txt', 'r') as f:
+    t = string.Template(f.read())
+contents = t.substitute(name='Mike', contents='How are you?')
+print(contents)
