@@ -1,2 +1,12 @@
 __pycache__
 site-packages
+
+######################
+# pycharm
+######################
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
