@@ -2,3 +2,5 @@ requests
 beautifulsoup4
 pytz
 pytest
+pytest-cov
+nose

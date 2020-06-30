@@ -10,3 +10,4 @@ site-packages
 *.ipr
 *.ids
 *.orig
+.coverage

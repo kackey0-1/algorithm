@@ -1,4 +1,4 @@
-import calculation
+from pytest import calculation
 import pytest # https://docs.pytest.org/
 
 
