@@ -17,7 +17,7 @@ employ_id.text = '222'
 employ_name = ET.SubElement(employ, 'name')
 employ_name.text = 'Ken'
 
-tree.write('data/test.xml', encoding='utf-8', xml_declaration=True)
+tree.write('data/tests.xml', encoding='utf-8', xml_declaration=True)
 
 tree = ET.ElementTree(file='data/test.xml')
 root = tree.getroot()

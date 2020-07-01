@@ -22,7 +22,7 @@ class TestCalTmpdir(object):
         print('start')
         cls.cal = calculation.Cal()
         cls.test_dir = '/tmp/test_dir'
-        cls.test_file_name = 'test.txt'
+        cls.test_file_name = 'tests.txt'
 
     @classmethod
     def teardown_class(cls):

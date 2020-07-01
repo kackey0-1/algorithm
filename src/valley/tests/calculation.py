@@ -22,4 +22,4 @@ class Cal(object):
             os.mkdir(dir_path)
         file_path = os.path.join(dir_path, file_name)
         with open(file_path, 'w') as f:
-            f.write('test')
+            f.write('tests')

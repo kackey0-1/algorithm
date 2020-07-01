@@ -4,3 +4,5 @@ pytz
 pytest
 pytest-cov
 nose
+tox
+selenium

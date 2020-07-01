@@ -5,8 +5,8 @@ print(os.path.exists('data/test.csv'))
 print(os.path.isfile('data/test.csv'))
 print(os.path.isdir('file/'))
 
-# pathlib.Path('file/test.txt').touch()
-# os.rename('file/test.txt','file/text.txt')
+# pathlib.Path('file/tests.txt').touch()
+# os.rename('file/tests.txt','file/text.txt')
 
 print(os.listdir(''))
 print(os.getcwd())
@@ -31,7 +31,7 @@ import zipfile
 import glob
 with zipfile.ZipFile('data/test.zip', 'w') as z:
     # z.write('file')
-    # z.write('file/test.csv')
+    # z.write('file/tests.csv')
     for f in glob.glob('data/**', recursive=True):
         print(f)
         z.write(f)

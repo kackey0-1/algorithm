@@ -8,6 +8,6 @@ def csv_file():
 
 def pytest_addoption(parser):
     """
-    test with pytest fixture
+    tests with pytest fixture
     """
     parser.addoption('--os-name', default='linux', help='OS Name')
