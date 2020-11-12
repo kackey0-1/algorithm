@@ -11,3 +11,5 @@ site-packages
 *.ids
 *.orig
 .coverage
+.idea/misc.xml
+.idea/python-scrape.iml
