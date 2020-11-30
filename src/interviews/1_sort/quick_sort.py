@@ -9,15 +9,16 @@ def partition(numbers: List[int], low: int, high: int) -> int:
         if numbers[j] < pivot:
             i += 1
             numbers[i], numbers[j] = numbers[j], numbers[i]
-
+    numbers[i+1], numbers[high] = numbers[high], numbers[i+1]
     return i+1
 
 
-def quick(nums: List) -> List:
-    def _quick_sort(numbers: List, low: int, high: int):
-        partition_index = partition(numbers, low, high)
-        _quick_sort(numbers, partition_index+1, high)
-        _quick_sort(numbers, low, partition_index-1)
+def quick(nums: List[int]) -> List[int]:
+    def _quick_sort(arr: List[int], low: int, high: int):
+        if low < high:
+            partition_index = partition(arr, low, high)
+            _quick_sort(arr, partition_index + 1, high)
+            _quick_sort(arr, low, partition_index - 1)
     _quick_sort(nums, 0, len(nums)-1)
     return nums
 
