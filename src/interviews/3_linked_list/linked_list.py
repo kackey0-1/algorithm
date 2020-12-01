@@ -17,7 +17,7 @@ class LinkedList(object):
     reverse function(while loop & recursive)
     """
 
-    def __init__(self, head=None) -> None:
+    def __init__(self, head: Node = None) -> None:
         self.head = head
 
     def append(self, data: Any):
