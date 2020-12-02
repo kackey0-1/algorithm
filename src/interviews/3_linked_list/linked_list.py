@@ -90,7 +90,7 @@ class LinkedList(object):
         1, 4, 6, 8, 9 => 1, 8, 6, 4, 9
         :return: None
         """
-
+        # TODO need to re-try again
         def _reverse_even(head: Node, previous_node: Node):
             if head is None:
                 return None

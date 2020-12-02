@@ -19,11 +19,11 @@ class DoublyLinkedList(object):
             self.head = new_node
             return
 
-        last_node = self.head
-        while last_node.next:
-            last_node = last_node.next
-        last_node.next = new_node
-        new_node.prev = last_node
+        current_node = self.head
+        while current_node.next:
+            current_node = current_node.next
+        current_node.next = new_node
+        new_node.prev = current_node
 
     def insert(self, data: Any):
         new_node = Node(data)
@@ -43,6 +43,36 @@ class DoublyLinkedList(object):
             current_node = current_node.next
 
     def remove(self, value: Any) -> None:
+        current_node = self.head
+        if current_node and current_node.data == value:
+            if current_node.next is None:
+                current_node = None
+                self.head = None
+                return
+            else:
+                self.head = current_node.next
+                current_node = None
+                return
+
+        while current_node and current_node.data != value:
+            current_node = current_node.next
+
+        if current_node is None:
+            return
+
+        if current_node.next is None:
+            prev = current_node.prev
+            prev.next = None
+            current_node = None
+        else:
+            prev_node = current_node.prev
+            next_node = current_node.next
+            prev_node.next = next_node
+            next_node.prev = prev_node
+            current_node = None
+            return
+
+        """
         current_node = self.head
         if current_node is None:
             if current_node.data == value:
@@ -70,9 +100,38 @@ class DoublyLinkedList(object):
             prev_node.next = current_node.next
             current_node = None
             return
+        """
+    def reverse_iterative(self) -> None:
+        # TODO need to re-try
+        previous_node = None
+        current_node = self.head
+        while current_node:
+            previous_node = current_node.prev
+            current_node.prev = current_node.next
+            current_node.next = previous_node
 
+            current_node = current_node.prev
 
+        if previous_node:
+            self.head = previous_node.prev
 
+    def reverse_recursive(self) -> None:
+        # TODO need to re-try
+        def _reverse(current_node: Node, previous_node: Node):
+            if current_node is None:
+                if previous_node:
+                    self.head = previous_node.prev
+                return
+            previous_node = current_node.prev
+            current_node.prev = current_node.next
+            current_node.next = previous_node
+
+            current_node = current_node.prev
+            return _reverse(current_node, previous_node)
+
+        previous_node = None
+        current_node = self.head
+        _reverse(current_node, previous_node)
 
 
 
@@ -83,8 +142,9 @@ if __name__ == '__main__':
     d.append(1)
     d.append(2)
     d.append(3)
+    d.reverse_iterative()
     d.print()
-    d.remove(4)
+    d.reverse_recursive()
     d.print()
 
 
