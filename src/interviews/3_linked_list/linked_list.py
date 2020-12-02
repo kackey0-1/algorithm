@@ -46,7 +46,7 @@ class LinkedList(object):
         # import gc
         current_node = self.head
         if current_node.data and current_node.data == data:
-            self.head = current_node.nex
+            self.head = current_node.next
             current_node = None
             # gc.collect()
             return
@@ -129,6 +129,7 @@ class LinkedList(object):
 
 if __name__ == '__main__':
     l = LinkedList()
+    l.insert(0)
     l.append(1)
     l.append(2)
     l.append(4)

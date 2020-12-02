@@ -27,26 +27,65 @@ class DoublyLinkedList(object):
 
     def insert(self, data: Any):
         new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+
         self.head.prev = new_node
         new_node.next = self.head
         self.head = new_node
 
     def print(self):
+        print('#' * 50)
         current_node = self.head
         while current_node:
             print(current_node.data)
             current_node = current_node.next
 
+    def remove(self, value: Any) -> None:
+        current_node = self.head
+        if current_node is None:
+            if current_node.data == value:
+                current_node = None
+                self.head = current_node
+                return
+        else:
+            if current_node.data == value:
+                self.head = current_node.next
+                current_node = None
+                return
+
+        while current_node.next:
+            if current_node.data == value:
+                prev_node = current_node.prev
+                next_node = current_node.next
+                prev_node.next = next_node
+                next_node.prev = prev_node
+                current_node = None
+                return
+            current_node = current_node.next
+
+        if current_node and current_node.data == value:
+            prev_node = current_node.prev
+            prev_node.next = current_node.next
+            current_node = None
+            return
+
+
+
+
+
+
 
 if __name__ == '__main__':
-    l = DoublyLinkedList()
-    l.append(1)
-    l.append(2)
-    l.insert(0)
-    l.print()
-    print(l.head.data)
-    print(l.head.next.data)
-    print(l.head.next.prev.data)
+    d = DoublyLinkedList()
+    d.append(0)
+    d.append(1)
+    d.append(2)
+    d.append(3)
+    d.print()
+    d.remove(4)
+    d.print()
 
 
 
