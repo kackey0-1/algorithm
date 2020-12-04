@@ -20,6 +20,15 @@ class HashTable(object):
         else:
             self.table[index].append([key, value])
 
+    def print(self) -> None:
+        for index in range(self.size):
+            print(index, end=' ')
+            for data in self.table[index]:
+                print('-->', end=' ')
+                print(data, end=' ')
+
+            print()
+
     def get(self, key) -> Any:
         index = self.hash(key)
         for data in self.table[index]:
@@ -34,16 +43,11 @@ class HashTable(object):
 
 if __name__ == '__main__':
     hash_table = HashTable()
-    print(hash_table.table)
-    # hash_table.add('car', 'Tesla')
-    # hash_table.add('car', 'Tesla')
-    # hash_table.add('pc', 'Mac')
-    # print(hash_table.get('pc'))
-    # print(hash_table.table)
+    hash_table['car'] = 'Tesla'
+    hash_table['car'] = 'Tesla'
+    hash_table['some'] = 'variable'
     hash_table['pc'] = 'Mac'
-    print(hash_table['pc'])
-    print(hash_table.table)
-
+    hash_table.print()
 
 
 
