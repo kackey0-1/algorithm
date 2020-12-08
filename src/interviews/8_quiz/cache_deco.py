@@ -1,4 +1,5 @@
 # Implements decorator to cache func
+
 from functools import lru_cache
 import time
 
