@@ -1,6 +1,7 @@
 from typing import List, Tuple
 from collections import Counter
 import operator
+import time
 
 
 def synmetric(array: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
@@ -23,7 +24,7 @@ def synmetric(array: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
 def count_max_v1(strings: str) -> Tuple[int, int]:
     """
     Input: 'This is a pen. This is an apple. Applepen
-    Output: {'p', 6}
+    Output: ('p', 6)
     """
     strings = strings.lower()
     counter = Counter()
@@ -37,18 +38,46 @@ def count_max_v1(strings: str) -> Tuple[int, int]:
 def count_max_v2(strings: str) -> Tuple[int, int]:
     """
     Input: 'This is a pen. This is an apple. Applepen
-    Output: {'p', 6}
+    Output: ('p', 6)
     """
     strings = strings.lower()
     l = [(c, strings.count(c)) for c in strings if not c.isspace()]
     return max(l, key=operator.itemgetter(1))
 
 
-def memorize():
+def count_max_v3(strings: str) -> Tuple[int, int]:
+    """
+    Input: 'This is a pen. This is an apple. Applepen
+    Output: ('p', 6)
+    """
+    d = {}
+    strings = strings.lower()
+    for char in strings:
+        if not char.isspace():
+            d[char] = strings.count(char)
+    max_key = max(d, key=d.get)
+    return (max_key, d[max_key])
+
+
+def memorize(f):
     """
     Implements decorator to cache func
     """
-    pass
+    cache = {}
+
+    def _wrapper(n):
+        if n not in cache:
+            cache[n] = f(n)
+        return cache[n]
+    return _wrapper
+
+
+@memorize
+def long_func(n: int):
+    r = 0
+    for i in range(10000000):
+        r += n * i
+    return r
 
 
 def min_count_remove(x: List[int], y: List[int]) -> None:
@@ -74,6 +103,7 @@ if __name__ == '__main__':
     strings = 'This is a pen. This is an apple. Applepen'
     print(count_max_v1(strings))
     print(count_max_v2(strings))
+    print(count_max_v3(strings))
 
     x = [1, 2, 3, 4, 4, 5, 5, 8, 10]
     y = [4, 5, 5, 5, 6, 7, 8, 8, 18]
@@ -83,5 +113,12 @@ if __name__ == '__main__':
     print('x = ', x)
     print('y = ', y)
 
+    for i in range(10):
+        print(long_func(i))
+    print('#' * 100)
+    start = time.time()
+    for i in range(10):
+        print(long_func(i))
+    print(start - time.time())
 
 
