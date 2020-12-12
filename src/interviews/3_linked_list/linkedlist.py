@@ -13,15 +13,16 @@ class LinkedList(object):
     def __init__(self):
         self.head = None
 
-    def add(self, data: Node) -> None:
+    def append(self, data: Any) -> None:
+        new_node = Node(data)
         if self.head is None:
-            self.head = Node(data)
+            self.head = new_node
             return
 
         current_node = self.head
         while current_node.next:
             current_node = current_node.next
-        current_node.next = Node(data)
+        current_node.next = new_node
 
     def print(self) -> None:
         if self.head is None:
