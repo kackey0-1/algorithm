@@ -41,27 +41,38 @@ def bubble(numbers: List[int]) -> None:
                 numbers[i], numbers[j] = numbers[j], numbers[i]
 
 
+def insert(numbers: List[int]) -> None:
+    length = len(numbers)
+    for i in range(length):
+        temp = numbers[i]
+        j = i - 1
+        while j >= 0 and numbers[j] > temp:
+            numbers[j+1] = numbers[j]
+            j -= 1
+        numbers[j+1] = temp
+
+
 if __name__ == '__main__':
-    numbers = [random.randint(0, 100) for i in range(10)]
-    print(numbers)
-    bubble(numbers)
-    print(numbers)
+    # numbers = [random.randint(0, 100) for i in range(10)]
+    # print(numbers)
+    # bubble(numbers)
+    # print(numbers)
+    #
+    # numbers = [random.randint(0, 100) for i in range(10)]
+    # print(numbers)
+    # select(numbers)
+    # print(numbers)
 
     numbers = [random.randint(0, 100) for i in range(10)]
     print(numbers)
-    select(numbers)
+    insert(numbers)
     print(numbers)
 
     # numbers = [random.randint(0, 100) for i in range(10)]
     # print(numbers)
-    # insert(numbers)
+    # quick(numbers)
     # print(numbers)
     #
-    numbers = [random.randint(0, 100) for i in range(10)]
-    print(numbers)
-    quick(numbers)
-    print(numbers)
-
     # numbers = [random.randint(0, 100) for i in range(10)]
     # print(numbers)
     # merge(numbers)

@@ -1,6 +1,7 @@
 import sys
 from typing import Optional
 
+
 class MiniHeap(object):
 
     def __init__(self):
@@ -30,10 +31,32 @@ class MiniHeap(object):
         self.current_size += 1
         self.heapify_up(self.current_size)
 
+    def min_child_index(self, index: int) -> int:
+        if self.heap[self.left_child_index(index)] < self.heap[self.right_child_index(index)]:
+            return self.left_child_index(index)
+        else:
+            return self.right_child_index(index)
+
+    def heapify_down(self, index: int) -> None:
+        while self.left_child_index(index) <= self.current_size:
+            min_chile_index = self.min_child_index(index)
+            if self.heap[index] > self.heap[min_chile_index]:
+                self.swap(index, min_chile_index)
+            index = min_chile_index
+
     def pop(self) -> Optional[int]:
         if len(self.heap) == 1:
             return
 
+        root = self.heap[1]
+        data = self.heap.pop()
+        if len(self.heap) == 1:
+            return root
+        # [-x, 5, 6. 2, 9, 13, 11]
+        self.heap[1] = data
+        self.current_size -= 1
+        self.heapify_down(1)
+        return root
 
 
 
@@ -47,12 +70,16 @@ class MiniHeap(object):
 
 
 if __name__ == '__main__':
-    mini_heap = MiniHeap()
-    mini_heap.push(5)
-    mini_heap.push(6)
-    mini_heap.push(2)
-    print(mini_heap.heap)
-
+    min_heap = MiniHeap()
+    min_heap.push(5)
+    min_heap.push(6)
+    min_heap.push(2)
+    min_heap.push(9)
+    min_heap.push(13)
+    min_heap.push(11)
+    min_heap.push(1)
+    print(min_heap.heap)
+    print(min_heap.pop())
 
 
 
