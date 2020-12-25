@@ -17,8 +17,8 @@ class MiniHeap(object):
     def right_child_index(self, index: int) -> int:
         return (2 * index) + 1
 
-    def swap(self, index: int, index2: int) -> None:
-        self.heap[index], self.heap[index2] = self.heap[index2], self.heap[index]
+    def swap(self, index1: int, index2: int) -> None:
+        self.heap[index1], self.heap[index2] = self.heap[index2], self.heap[index1]
 
     def heapify_up(self, index: int) -> None:
         while self.parent_index(index) > 0:
@@ -32,10 +32,13 @@ class MiniHeap(object):
         self.heapify_up(self.current_size)
 
     def min_child_index(self, index: int) -> int:
-        if self.heap[self.left_child_index(index)] < self.heap[self.right_child_index(index)]:
+        if self.right_child_index(index) > self.current_size:
             return self.left_child_index(index)
         else:
-            return self.right_child_index(index)
+            if self.heap[self.left_child_index(index)] < self.heap[self.right_child_index(index)]:
+                return self.left_child_index(index)
+            else:
+                return self.right_child_index(index)
 
     def heapify_down(self, index: int) -> None:
         while self.left_child_index(index) <= self.current_size:
@@ -52,21 +55,12 @@ class MiniHeap(object):
         data = self.heap.pop()
         if len(self.heap) == 1:
             return root
+
         # [-x, 5, 6. 2, 9, 13, 11]
         self.heap[1] = data
         self.current_size -= 1
         self.heapify_down(1)
         return root
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -80,8 +74,25 @@ if __name__ == '__main__':
     min_heap.push(1)
     print(min_heap.heap)
     print(min_heap.pop())
+    print(min_heap.heap)
+    print(min_heap.pop())
+    print(min_heap.heap)
 
+    import heapq
+    print('#'*100)
+    numbers = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
+    heap_data = []
 
+    for num in numbers:
+        heapq.heappush(heap_data, num)
+
+    print(heap_data)
+    heapq.heapify(numbers)
+    print(numbers)
+
+    while heap_data:
+        print(heapq.heappop(heap_data))
+    print(heap_data)
 
 
 
