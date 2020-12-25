@@ -102,17 +102,23 @@ class DoublyLinkedList(object):
         current = self.head
         while current.next:
             current = current.next
+
         current.next = new_node
         new_node.prev = current
 
     def insert(self, data: Any) -> None:
         new_node = Node(data)
-        current = self.head
-
+        next = self.head
         self.head = new_node
-        new_node.next = current
-        if current:
-            current.prev = new_node
+        new_node.next = next
+        if next:
+            next.prev = new_node
+
+    def print(self) -> None:
+        current = self.head
+        while current:
+            print(current.data)
+            current = current.next
 
     def remove(self, data: Any) -> None:
         current = self.head
@@ -141,25 +147,22 @@ class DoublyLinkedList(object):
             next.prev = prev
         current = None
 
-    def print(self) -> None:
-        current = self.head
-        while current:
-            print(current.data)
-            current = current.next
-
     def reverse_iterative(self) -> None:
+        if self.head is None:
+            return
+
         current = self.head
         prev = None
         while current:
-            prev = current.prev
             current.prev = current.next
             current.next = prev
-
+            prev = current
             current = current.prev
-        self.head = prev.prev
+        self.head = prev
 
 
 if __name__ == '__main__':
+    print('#'*100)
     d = DoublyLinkedList()
     d.insert(1)
     d.append(2)
@@ -171,7 +174,17 @@ if __name__ == '__main__':
     d.append(4)
     d.append(5)
     d.append(6)
+    d.reverse_iterative()
     d.print()
+
+    print('#'*100)
+    print(d.head.data)
+    print(d.head.next.data)
+    print(d.head.next.next.data)
+    print(d.head.next.next.next.data)
+    print(d.head.next.next.next.prev.data)
+    print(d.head.next.next.next.prev.prev.data)
+    print(d.head.next.next.next.prev.prev.prev.data)
 
     print('#'*100)
     l = LinkedList()
