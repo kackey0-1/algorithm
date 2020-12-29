@@ -42,10 +42,10 @@ class MiniHeap(object):
 
     def heapify_down(self, index: int) -> None:
         while self.left_child_index(index) <= self.current_size:
-            min_chile_index = self.min_child_index(index)
-            if self.heap[index] > self.heap[min_chile_index]:
-                self.swap(index, min_chile_index)
-            index = min_chile_index
+            min_child_index = self.min_child_index(index)
+            if self.heap[index] > self.heap[min_child_index]:
+                self.swap(index, min_child_index)
+            index = min_child_index
 
     def pop(self) -> Optional[int]:
         if len(self.heap) == 1:
