@@ -8,35 +8,74 @@ class MiniHeap(object):
         self.heap = [sys.maxsize * -1]
         self.current_size = 0
 
-    # [-x, 1, 4, 5, 2, 10, 29, 12, 13]
     def parent_index(self, index: int) -> int:
         return index // 2
 
     def left_child_index(self, index: int) -> int:
-        return (index * 2)
+        return index * 2
 
     def right_child_index(self, index: int) -> int:
         return (index * 2) + 1
 
+    def swap(self, index1: int, index2: int) -> None:
+        self.heap[index1], self.heap[index2] = self.heap[index2], self.heap[index1]
+
+    def push(self, value: int) -> None:
+        self.heap.append(value)
+        self.current_size += 1
+        self.heapify_up(self.current_size)
+
+    def heapify_up(self, index: int) -> None:
+        parent_index = self.parent_index(index)
+        while self.heap[index] < self.heap[parent_index]:
+            self.swap(index, parent_index)
+            index = parent_index
+            parent_index = self.parent_index(parent_index)
+
+    def min_child_index(self, index: int) -> int:
+        if self.right_child_index(index) > self.current_size:
+            return self.left_child_index(index)
+        else:
+            if self.heap[self.left_child_index(index)] < self.heap[self.right_child_index(index)]:
+                return self.left_child_index(index)
+            else:
+                return self.right_child_index(index)
+
+    def heapify_down(self, index: int) -> None:
+        while self.left_child_index(index) <= self.current_size:
+            min_child_index = self.min_child_index(index)
+            if self.heap[index] > self.heap[min_child_index]:
+                self.swap(index, min_child_index)
+            index = min_child_index
+
+    def pop(self) -> Optional[int]:
+        if len(self.heap) == 1:
+            return
+
+        root = self.heap[1]
+        data = self.heap.pop()
+        if len(self.heap) == 1:
+            return root
+
+        # [-x, 5, 6. 2, 9, 13, 11]
+        self.heap[1] = data
+        self.current_size -= 1
+        self.heapify_down(1)
+        return root
+
 
 if __name__ == '__main__':
     h = MiniHeap()
-    h.heap.append(0)
-    h.heap.append(3)
-    h.heap.append(5)
-    h.heap.append(6)
-    h.heap.append(7)
+    h.push(8)
+    h.push(9)
+    h.push(0)
+    h.push(1)
+    h.push(4)
 
-    h.heap.append(8)
-    h.heap.append(9)
     print(h.heap)
-    print(h.right_child_index(2))
-    print(h.heap[h.left_child_index(2)])
-    print(h.heap[h.right_child_index(2)])
+    print(h.pop())
+    print(h.heap)
 
-    print(h.right_child_index(3))
-    print(h.heap[h.left_child_index(3)])
-    print(h.heap[h.right_child_index(3)])
 
 
 
