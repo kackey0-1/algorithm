@@ -26,36 +26,11 @@ class LinkedList(object):
             current = current.next
         current.next = new_node
 
-    def insert(self, data: Any):
+    def insert(self, data: Any) -> None:
         new_node = Node(data)
         current = self.head
         self.head = new_node
         new_node.next = current
-
-    def remove(self, data: Any):
-        current = self.head
-        if current and current.data == data:
-            if current.next is None:
-                self.head = None
-                current = None
-                return
-            else:
-                self.head = current.next
-                current = None
-                return
-
-        previous = None
-        while current and current.data != data:
-            previous = current
-            current = current.next
-
-        if current is None:
-            return
-        if current.next is None:
-            previous.next = None
-        else:
-            previous.next = current.next
-        current = None
 
     def print(self) -> None:
         current = self.head
@@ -63,29 +38,44 @@ class LinkedList(object):
             print(current.data)
             current = current.next
 
+    def remove(self, data: Any) -> None:
+        current = self.head
+        if current and current.data == data:
+            self.head = current.next
+            return
+
+        prev = None
+        while current and current.data != data:
+            prev = current
+            current = current.next
+
+        if current is None:
+            return
+        if current.data == data:
+            prev.next = current.next
+
     def reverse_iterative(self) -> None:
         current = self.head
+
         prev = None
         while current:
             next = current.next
-
             current.next = prev
             prev = current
-
             current = next
+
         self.head = prev
 
-    def reverse_recursive(self):
-        def _reverse(current: Node, prev: Node) -> None:
-            if current is None:
-                self.head = prev
-                return
-            next = current.next
-            current.next = prev
-            prev = current
-            current = next
-            _reverse(current, prev)
-        _reverse(self.head, None)
+    def reverse_recursive(self) -> None:
+        def _reverse(current: Node, prev: Node) -> Node:
+            if current:
+                next = current.next
+                current.next = prev
+                prev = current
+                current = next
+                return _reverse(current, prev)
+            return prev
+        self.head = _reverse(self.head, None)
 
 
 class DoublyLinkedList(object):
@@ -148,9 +138,6 @@ class DoublyLinkedList(object):
         current = None
 
     def reverse_iterative(self) -> None:
-        if self.head is None:
-            return
-
         current = self.head
         prev = None
         while current:
