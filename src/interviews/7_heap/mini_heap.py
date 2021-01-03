@@ -36,7 +36,7 @@ class MiniHeap(object):
         if self.right_child_index(index) > self.current_size:
             return self.left_child_index(index)
         else:
-            if self.left_child_index(index) < self.right_child_index(index):
+            if self.heap[self.left_child_index(index)] < self.heap[self.right_child_index(index)]:
                 return self.left_child_index(index)
             else:
                 return self.right_child_index(index)
@@ -74,8 +74,10 @@ if __name__ == '__main__':
     h.push(2)
 
     print(h.heap)
-    # print(h.pop())
-    # print(h.heap)
+    print(h.pop())
+    print(h.heap)
+    print(h.pop())
+    print(h.heap)
 
 
 

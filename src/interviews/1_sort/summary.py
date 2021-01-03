@@ -42,11 +42,10 @@ def bubble(numbers: List[int]) -> None:
 
 
 def insert(numbers: List[int]) -> None:
-    length = len(numbers)
-    for i in range(length):
+    for i in range(len(numbers)):
         temp = numbers[i]
         j = i - 1
-        while j >= 0 and numbers[j] > temp:
+        while j >= 0 and temp < numbers[j]:
             numbers[j+1] = numbers[j]
             j -= 1
         numbers[j+1] = temp
