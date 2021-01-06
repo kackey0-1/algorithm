@@ -3,12 +3,11 @@ import random
 
 
 def quick(numbers: List[int]) -> None:
-    def _sort(numbers: List[int], low: int, high: int) -> None:
-        if not low < high:
-            return
-        partition_index = partition(numbers, low, high)
-        _sort(numbers, low, partition_index - 1)
-        _sort(numbers, partition_index, high)
+    def _sort(numbers: List[int], low: int, high: int):
+        if low < high:
+            partition_index = partition(numbers, low, high)
+            _sort(numbers, partition_index, high)
+            _sort(numbers, low, partition_index - 1)
     _sort(numbers, 0, len(numbers) - 1)
 
 
@@ -18,17 +17,16 @@ def partition(numbers: List[int], low: int, high: int) -> int:
     for j in range(low, high):
         if numbers[j] <= pivot:
             i += 1
-            numbers[i], numbers[j] = numbers[j], numbers[i]
+            numbers[j], numbers[i] = numbers[i], numbers[j]
     numbers[i+1], numbers[high] = numbers[high], numbers[i+1]
     return i+1
 
 
 def select(numbers: List[int]) -> None:
-    length = len(numbers)
-    for i in range(length):
+    for i in range(len(numbers)):
         tmin = i
-        for j in range(i, length):
-            if numbers[j] < numbers[tmin]:
+        for j in range(i, len(numbers)):
+            if numbers[tmin] > numbers[j]:
                 tmin = j
         numbers[i], numbers[tmin] = numbers[tmin], numbers[i]
 
@@ -42,10 +40,11 @@ def bubble(numbers: List[int]) -> None:
 
 
 def insert(numbers: List[int]) -> None:
-    for i in range(len(numbers)):
+    length = len(numbers)
+    for i in range(length):
         temp = numbers[i]
         j = i - 1
-        while j >= 0 and temp < numbers[j]:
+        while j >= 0 and numbers[j] > temp:
             numbers[j+1] = numbers[j]
             j -= 1
         numbers[j+1] = temp
@@ -56,8 +55,8 @@ def merge(numbers: List[int]):
         return numbers
 
     center = len(numbers) // 2
-    left = numbers[center:]
-    right = numbers[:center]
+    left = numbers[:center]
+    right = numbers[center:]
 
     merge(left)
     merge(right)
@@ -72,10 +71,12 @@ def merge(numbers: List[int]):
             numbers[k] = right[j]
             j += 1
             k += 1
+
     while i < len(left):
         numbers[k] = left[i]
         i += 1
         k += 1
+
     while j < len(right):
         numbers[k] = right[j]
         j += 1
