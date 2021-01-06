@@ -87,7 +87,6 @@ class DoublyLinkedList(object):
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
-            return
 
         current = self.head
         while current.next:
@@ -98,11 +97,11 @@ class DoublyLinkedList(object):
 
     def insert(self, data: Any) -> None:
         new_node = Node(data)
-        next = self.head
+        current = self.head
         self.head = new_node
-        new_node.next = next
-        if next:
-            next.prev = new_node
+        new_node.next = current
+        if current:
+            current.prev = new_node
 
     def print(self) -> None:
         current = self.head
@@ -113,14 +112,8 @@ class DoublyLinkedList(object):
     def remove(self, data: Any) -> None:
         current = self.head
         if current and current.data == data:
-            if current.next is None:
-                self.head = None
-                return
-            else:
-                next = current.next
-                self.head = next
-                next.prev = None
-                return
+            self.head = current.next
+            return
 
         prev = None
         while current and current.data != data:
@@ -129,13 +122,10 @@ class DoublyLinkedList(object):
 
         if current is None:
             return
-        if current.next is None:
-            prev.next = None
-        else:
-            next = current.next
-            prev.next = next
-            next.prev = prev
-        current = None
+        if current.data == data:
+            current.prev = prev
+            prev.next = current.next
+            current = None
 
     def reverse_iterative(self) -> None:
         current = self.head
@@ -145,11 +135,12 @@ class DoublyLinkedList(object):
             current.next = prev
             prev = current
             current = current.prev
+
         self.head = prev
 
 
 if __name__ == '__main__':
-    print('#'*100)
+    print('#'*10 + ' Doubly Linked List ' + '#'*10)
     d = DoublyLinkedList()
     d.insert(1)
     d.append(2)
@@ -164,7 +155,7 @@ if __name__ == '__main__':
     d.reverse_iterative()
     d.print()
 
-    print('#'*100)
+    print('#'*10 + ' Doubly Linked List ' + '#'*10)
     print(d.head.data)
     print(d.head.next.data)
     print(d.head.next.next.data)
@@ -173,7 +164,7 @@ if __name__ == '__main__':
     print(d.head.next.next.next.prev.prev.data)
     print(d.head.next.next.next.prev.prev.prev.data)
 
-    print('#'*100)
+    print('#'*10 + ' Linked List ' + '#'*10)
     l = LinkedList()
     l.insert(1)
     l.append(2)
