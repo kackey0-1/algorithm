@@ -68,7 +68,7 @@ class BinarySearchTree(object):
                 elif node.right is None:
                     return node.left
 
-                temp = min_value(node.right)
+                temp = self.min_value(node.right)
                 node.value = temp.value
                 node.right = _remove(node.right, temp.value)
             return node
