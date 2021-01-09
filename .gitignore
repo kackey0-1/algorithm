@@ -13,3 +13,6 @@ venv
 .coverage
 .idea/misc.xml
 .idea/python-scrape.iml
+/src/interviews/0_mathmatics/histgram.png
+misc.xml
+*.iml
