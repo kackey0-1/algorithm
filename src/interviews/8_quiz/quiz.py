@@ -33,7 +33,6 @@ def count_max_v1(strings: str) -> Tuple[int, int]:
     return max_key, count[max_key]
 
 
-
 def count_max_v2(strings: str) -> Tuple[int, int]:
     """
     Input: 'This is a pen. This is an apple. Applepen
@@ -63,6 +62,7 @@ def memorize(f):
     Implements decorator to cache func
     """
     cache = {}
+
     def _wrapper(n):
         if n not in cache:
             cache[n] = f(n)
@@ -97,6 +97,7 @@ def min_count_remove(x: List[int], y: List[int]) -> None:
                 y[:] = [_ for _ in y if _ != x_key]
     return x, y
 
+
 if __name__ == '__main__':
     l = [(1, 2), (3, 5), (4, 7), (5, 3), (7, 4)]
     print(synmetric(l))
@@ -121,21 +122,3 @@ if __name__ == '__main__':
     # for i in range(10):
     #     print(long_func(i))
     # print(start - time.time())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
