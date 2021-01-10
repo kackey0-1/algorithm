@@ -56,7 +56,7 @@ class BinarySearchTree(object):
             current = current.left
         return current
 
-    def remove(self, value: Any) -> Node:
+    def remove(self, value: Any) -> None:
         def _remove(node: Node, value: Any) -> Node:
             if node is None:
                 return node
@@ -64,17 +64,17 @@ class BinarySearchTree(object):
                 node.left = _remove(node.left, value)
             elif value > node.value:
                 node.right = _remove(node.right, value)
-            else: # value == node.value
+            else:  # value == node.value
                 if node.left is None:
                     return node.right
-                elif node.left is None:
+                elif node.right is None:
                     return node.left
 
                 temp = self.min_value(node.right)
                 node.value = temp.value
                 node.right = _remove(node.right, temp.value)
             return node
-        return _remove(self.root, value)
+        _remove(self.root, value)
 
 
 if __name__ == '__main__':
@@ -88,7 +88,7 @@ if __name__ == '__main__':
     binary_tree.insert(2)
     print(binary_tree.search(2))
     print(binary_tree.search(10))
-    binary_tree.remove(6)
+    print(binary_tree.remove(6))
     binary_tree.inorder()
 
 
