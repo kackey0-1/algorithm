@@ -6,4 +6,4 @@ pytest-cov
 nose
 tox
 selenium
-pycrypto
+query_string
