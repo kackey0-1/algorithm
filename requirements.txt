@@ -7,3 +7,9 @@ nose
 tox
 selenium
 query_string
+
+matplotlib
+pandas
+numpy
+seaborn
+
