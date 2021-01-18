@@ -6,6 +6,8 @@ pytest-cov
 nose
 tox
 selenium
+query_string
+
 matplotlib
 pandas
 numpy
