@@ -16,3 +16,4 @@ venv
 /src/interviews/0_mathmatics/histgram.png
 misc.xml
 *.iml
+/.vscode/
