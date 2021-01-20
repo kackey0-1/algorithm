@@ -13,5 +13,5 @@ pandas
 numpy
 seaborn
 
-Django==2.2.5
+Django==2.2.13
 djangorestframework==3.10.3
