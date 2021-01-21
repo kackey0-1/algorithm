@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd party apps
     'rest_framework',  # added for RF
-    'apiv1',
+    'djoser',
+    'corsheaders',
+    # created apps
+    'apiv1.apps.Apiv1Config',
 ]
 
 MIDDLEWARE = [
