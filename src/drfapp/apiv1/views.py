@@ -1,9 +1,23 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import status, views
 from rest_framework.response import Response
+from django.conf import settings
 
+from modules import image_generater
 from .models import Book
-from .serializers import BookSerializer
+from .serializers import BookSerializer, EmojiLogSerializer
+
+
+class EmojiGenerater(views.APIView):
+
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        name = image_generater.generate(text=data.get('text'), color=data.get('color'))
+        data['name'] = settings.IMAGE_URL.format(name)
+        serializer = EmojiLogSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status.HTTP_201_CREATED)
 
 
 class BookListCreateAPIView(views.APIView):

@@ -5,22 +5,26 @@ import numpy
 from PIL import Image, ImageDraw, ImageFont
 
 
-def generate_image(text, color, fonttype="Ricty-Bold.ttf", fontsize=64):
+def generate(text, color, fonttype='modules/fonts/Ricty-Bold.ttf', fontsize=64):
 
-    # Specify TrueType font and Fontsize
+    # Specify True-Type font and Font-Size
     font = ImageFont.truetype(fonttype, fontsize)
-    image = Image.new("RGB", (128, 128), (255, 255, 255))
+    image = Image.new("RGBA", (128, 128), (0, 0, 0, 0))
     draw = ImageDraw.Draw(image)
     print(text[0:2])
     print(text[2:4])
-    draw.text((0, 0), "{}\n{}".format(text[0:2], text[2:4]), font=font, fill=color)
-    image.save("emoji_{}.png".format(text), "PNG")
+    draw.text((0, 0), '{}\n{}'.format(text[0:2], text[2:4]), font=font, fill=color)
+    image_name = 'emoji_{}.png'.format(text)
+    image.save('static/images/' + image_name, 'PNG')
+    return image_name
 
 
 if __name__ == '__main__':
-    generate_image(text='スゲーナ', color='#000000', fonttype='fonts/Ricty-Bold.ttf')
+    generate(text='スゲーナ', color='#000000', fonttype='modules/fonts/Ricty-Bold.ttf')
 
     """
+    from modules import image_generater
+    image_generater.generate(text='それな', color='#000000')
     #
     arg = sys.argv
     # created file name

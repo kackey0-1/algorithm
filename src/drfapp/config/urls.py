@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.generic import TemplateView, RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
 from apiv1 import views as apiv1_views
 
@@ -26,7 +28,8 @@ urlpatterns = [
     path('api/v1/auth/', include('djoser.urls')),
     path('api/v1/auth/', include('djoser.urls.jwt')),
     # model book list & register
+    path('api/v1/image-gen', apiv1_views.EmojiGenerater.as_view()),
     path('api/v1/books', apiv1_views.BookListCreateAPIView.as_view()),
     path('api/v1/books/<pk>', apiv1_views.BookRetrieveUpdateDestroyAPIView.as_view()),
-    re_path('', RedirectView.as_view(url='/')),
-]
+    # re_path('', RedirectView.as_view(url='/')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
