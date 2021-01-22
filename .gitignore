@@ -1,6 +1,7 @@
 __pycache__
 site-packages
 venv
+node_modules
 ######################
 # pycharm
 ######################

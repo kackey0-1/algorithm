@@ -38,13 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 3rd party apps
-    'rest_framework',  # added for RF
-    'djoser',
-    'corsheaders',
     # created apps
     'apiv1.apps.Apiv1Config',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,7 +124,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
-
 
 # For image generater settings
 IMAGE_URL = 'http://127.0.0.1:8000/static/images/{}'
