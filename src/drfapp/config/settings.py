@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd party apps
     'rest_framework',  # added for RF
-    'apiv1',
+    'djoser',
+    'corsheaders',
+    # created apps
+    'apiv1.apps.Apiv1Config',
 ]
 
 MIDDLEWARE = [
@@ -118,5 +123,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static/'),
+]
+
+
+# For image generater settings
+IMAGE_URL = 'http://127.0.0.1:8000/static/images/{}'
