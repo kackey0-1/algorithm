@@ -38,13 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 3rd party apps
-    'rest_framework',  # added for RF
-    'djoser',
-    'corsheaders',
+    # 3rd parties
+    'rest_framework',
+
     # created apps
     'apiv1.apps.Apiv1Config',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -128,6 +128,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
 
-
 # For image generater settings
 IMAGE_URL = 'http://127.0.0.1:8000/static/images/{}'
+
+# we whitelist localhost:3000 because that's where frontend will be served
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000/'
+)
