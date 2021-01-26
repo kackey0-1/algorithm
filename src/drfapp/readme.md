@@ -16,6 +16,10 @@ python manage.py createsuperuser
 ```
 
 ### Setup React
+[About React](https://qiita.com/TsutomuNakamura/items/72d8cf9f07a5a30be048)
+
+[Setup React for Django](https://qiita.com/sand/items/15da91117c680a618c2b)
+
 ```bash
 # ref: https://www.valentinog.com/blog/drf/
 # create frontend
