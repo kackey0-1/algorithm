@@ -23,13 +23,15 @@ from apiv1 import views as apiv1_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # auth
-    path('', TemplateView.as_view(template_name='index.html')),
-    # path('api/v1/auth/', include('djoser.urls')),
-    # path('api/v1/auth/', include('djoser.urls.jwt')),
     # model book list & register
     path('api/v1/image-gen', apiv1_views.EmojiGenerater.as_view()),
     path('api/v1/books', apiv1_views.BookListCreateAPIView.as_view()),
     path('api/v1/books/<pk>', apiv1_views.BookRetrieveUpdateDestroyAPIView.as_view()),
-    re_path('', RedirectView.as_view(url='/')),
+    path('', include('frontend.urls')),
+
+    # auth
+    # path('', TemplateView.as_view(template_name='index.html')),
+    # path('api/v1/auth/', include('djoser.urls')),
+    # path('api/v1/auth/', include('djoser.urls.jwt')),
+    # re_path('', RedirectView.as_view(url='/')),
 ]

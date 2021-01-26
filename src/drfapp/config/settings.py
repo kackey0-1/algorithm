@@ -25,7 +25,7 @@ SECRET_KEY = 'j^s_c(*5k-9(&@7#j3*-=gut36mp!)!l&hkn-@^2i178r_kw%s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # created apps
     'apiv1.apps.Apiv1Config',
+    'frontend',
 ]
 
 
@@ -131,7 +132,3 @@ STATICFILES_DIRS = [
 # For image generater settings
 IMAGE_URL = 'http://127.0.0.1:8000/static/images/{}'
 
-# we whitelist localhost:3000 because that's where frontend will be served
-CORS_ORIGIN_WHITELIST = (
-    'localhost:3000/'
-)
