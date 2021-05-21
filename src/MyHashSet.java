@@ -1,5 +1,3 @@
-package map;
-
 import java.util.LinkedList;
 
 public class MyHashSet {
