@@ -62,13 +62,15 @@ public class MyLinkedList {
         System.out.println(obj.get(1));
 
     }
-}
 
-class Node {
-    int value;
-    Node next;
 
-    Node(int value) {
-        this.value = value;
+    class Node {
+        int value;
+        Node next;
+
+        Node(int value) {
+            this.value = value;
+        }
     }
 }
+
